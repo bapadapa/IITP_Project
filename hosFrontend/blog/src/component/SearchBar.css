@@ -1,0 +1,9 @@
+ 
+ @import '~antd/dist/antd.css';
+
+ #SearchBar  {
+    margin: 200px;
+    border-color: black ;
+    
+    
+}  
