@@ -21,7 +21,13 @@ from hosDjango import views as hosloc_Views
 router = DefaultRouter()
 router.register('hosloc',hosloc_Views.LocInfoViewSet)
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include(router.urls)),
+    path('<str:city>/city/',hosloc_Views.cityHos),
+    path('<str:county>/county/',hosloc_Views.CounryHos),
+    path('<str:city>/city/<str:county>/county/',hosloc_Views.cityCountryHos),
+    path('<str:city>/city/<str:county>/county/<str:subject>/subject/', hosloc_Views.AllHos),
+    # path('/<str:city>/det/',hosloc_Views.selectCity, name ='cityDet'),
 ]
