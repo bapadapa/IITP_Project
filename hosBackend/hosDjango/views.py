@@ -13,12 +13,21 @@ class LocInfoViewSet(ModelViewSet):
     queryset = LocInfo.objects.all()
     serializer_class = LocInfoSerializer
 
+# @api_view(['get'])
+# def cityHosDis(request):
+#     queryset = LocInfo.objects.all()
+#     queryset.values("loc_hosCityName").distinct()
+#     serializer = LocInfoSerializer(queryset , many = True)
+#     return Response(serializer.data)
+
 
 @api_view(['get'])
 def cityHos(request,city):
     queryset =LocInfo.objects.filter(loc_hosCityName = city)
     serializer = LocInfoSerializer(queryset , many = True)
     return Response(serializer.data)
+
+
 
 @api_view(['get'])
 def CounryHos(request,county):

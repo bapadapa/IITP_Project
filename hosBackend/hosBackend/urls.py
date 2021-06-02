@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include(router.urls)),
     path('<str:city>/city/',hosloc_Views.cityHos),
+    # path('cityHosDis/',hosloc_Views.cityHosDis),
     path('<str:county>/county/',hosloc_Views.CounryHos),
     path('<str:city>/city/<str:county>/county/',hosloc_Views.cityCountryHos),
     path('<str:city>/city/<str:county>/county/<str:subject>/subject/', hosloc_Views.AllHos),
