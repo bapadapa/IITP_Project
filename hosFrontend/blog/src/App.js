@@ -5,28 +5,38 @@ import './App.css';
 import ss from './image/ss.png'
 import Footer from "./component/Footer"
 import Banner from "./component/Banner"
+import { Route, Switch } from "react-router";
 
 const App = () => {
   return (
   <div>  
     <section>
-      <div>
+      <header>
         <Banner />
-      </div>
-      <div>
-        <div className="App">
-          <header className="App-header">       
-           <img src={ss}  alt="통합의료" />
-            <div>
-              <SearchBar/>
-                
-             </div> 
-            <div>
-              <Map/>
+      </header>
+      <Switch>
+        <Route exact ={true} path = '/'>
+          <div>
+            <div className="App">
+              <div className="App-header">       
+              <img src={ss}  alt="통합의료" />
+                <div>
+                  <SearchBar/>                
+                </div>
+                <div>
+                  <Map/>
+                </div>
+              </div>
             </div>
-          </header>
-        </div>
-      </div>
+          </div>
+        </Route>
+      <Route exact ={true} path  ='/tmp'>
+      <div>
+                  <Map/>
+                </div>
+      </Route>
+      
+      </Switch>
     </section>
     <section>
       <footer>

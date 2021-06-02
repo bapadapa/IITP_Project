@@ -1,8 +1,9 @@
 import React from "react";
 // import Category from "../Category";
 import "./SearchBar.css"
-import {  Space, TreeSelect } from 'antd';
-
+import {  Space, TreeSelect ,Form, Divider,Button } from 'antd';
+import {API_URL} from './constants'
+import axios from  'axios'
 
 import { AudioOutlined } from '@ant-design/icons';
 import Search from "antd/lib/transfer/search";
@@ -89,10 +90,32 @@ class SearchBar extends React.Component{
       //경기도
       const Subject16 = ['수원시', '성남시', '안양시', '안산시', '용인시', '부천시', '광명시', '평택시', '과천시', '오산시', '시흥시', '군포시', '의왕시', '하남시', '이천시', '안성시', '김포시',
       '화성시', '광주시', '여주시', '양평군', '고양시', '구리시', '남양주시', '파주시', '양주시', '포천시', '연천군', '가평군']
+ 
+      const onSubmit = (values) => {
+       console.log('aa : ',values.selectHospital)
+       let cityCounry = values.selectHospital;
+       let  hos_infos = Object   
+       axios
+         // .get(`${API_URL}/hosloc/`)
+         .get(`${API_URL}/${cityCounry[0]}/city/${cityCounry[1]}/county/`)
+         .then(function (result) {
+           hos_infos = result.data;
+           console.log("병원정보 : ", hos_infos);
+         })
+         .catch(function (error) {
+           console.log("Fail to Conn API", error);
+         });
+     };
+
+
+
+
       return (
         <div className="searchBar">
-           
-          <Space direction="vertical">
+           <Form name="selectHos" onFinish={onSubmit}>
+        <Form.Item name="selectHospital">
+        
+        <Space direction="vertical">
             {/* <Search> */}
             <TreeSelect 
             showSearch
@@ -348,6 +371,17 @@ class SearchBar extends React.Component{
 
             </TreeSelect>  
           </Space> 
+
+
+        </Form.Item>
+        <Divider />
+        <Form.Item>
+          <Button id="submit-buttion" size="large" htmlType="submit">
+            병원 선택
+          </Button>
+        </Form.Item>
+      </Form>
+       
        
         </div>
        )
