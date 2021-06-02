@@ -80,9 +80,7 @@ function MainPage() {
           </Button>
         </Form.Item>
       </Form>
-      <div>
-        <Map hosInfos={hos_infos} />
-      </div>
+     
     </div>
   );
 }

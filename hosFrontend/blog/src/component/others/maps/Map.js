@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 const Map = ({ hosInfos }) => {
   console.log(hosInfos);
   const style = {
+    
     border: "5px solid gray",
     margin: "5px",
   };

@@ -1,5 +1,4 @@
 import React from "react";
-import SearchBar from "./component/SearchBar";
 import Map from "./component/Map";
 import "./App.css";
 import ss from "./image/ss.png";
@@ -7,10 +6,12 @@ import Footer from "./component/Footer";
 import Banner from "./component/Banner";
 import { Route, Switch } from "react-router";
 import MainPage from "./component/main";
+import Main2 from "./component/main2"
+
 // import SearchBar2 from "./component/others/serchBar/SearchBar2";
 const App = () => {
   return (
-    <div>
+    <div className='back'>
       <section>
         <header>
           <Banner />
@@ -29,9 +30,9 @@ const App = () => {
               </div>
             </div>
           </Route>
-          <Route exact={true} path="/tmp">
+          <Route exact={true} path="/1">
             <div>
-              <Map />
+              <Main2 />         
             </div>
           </Route>
         </Switch>

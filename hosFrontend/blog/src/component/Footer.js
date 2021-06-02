@@ -5,9 +5,9 @@ import React from 'react';
 class Footer extends React.Component{
     render(){
         const imagestyle = {
-            height: "60px",  
-            width: "150px",
-            float: "right"
+            // height: "60px",  
+            width: "100%",
+            // float: "right"
               };
       return (
 <footer>
@@ -17,6 +17,7 @@ class Footer extends React.Component{
     style={imagestyle}
     className="ho"
     alt='코로나 링크' />
+    
     </a>
     <div>
       <banner />

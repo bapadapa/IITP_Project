@@ -4,5 +4,12 @@
     background : black;
     
 }  
+.map{
+   height: 350px;
+   width: 2000px;
+   align-items: center;
+   justify-content: center;
+   display: flex;
+}
 
 
