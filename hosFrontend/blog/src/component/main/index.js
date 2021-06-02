@@ -2,10 +2,11 @@ import axios from "axios";
 import "./index.css";
 import Map from "../others/maps/Map";
 import { API_URL, countyName, citysName } from "../constants";
-import { Route, useHistory } from "react-router-dom";
+import { Route, useHistory, Link } from "react-router-dom";
 import React from "react";
 import { Cascader, Form, Button, Divider, message } from "antd";
 import { unstable_renderSubtreeIntoContainer } from "react-dom";
+
 // import SearchBar from "../SearchBar/";
 import SearchBar from "../others/serchBar";
 function onChange(value) {
@@ -13,7 +14,8 @@ function onChange(value) {
 }
 
 function MainPage() {
-  const [hosLocs, setHosLoc] = React.useState([]);
+  const [hosCity, sethosCity] = React.useState([]);
+  const [hosCountry, sethosCountry] = React.useState([]);
   const history = useHistory();
   const [hos_infos, setHos_infos] = React.useState([]);
   //   const [latitute,setLatitue]
@@ -25,6 +27,8 @@ function MainPage() {
       .then(function (result) {
         const hos_infos = result.data;
         setHos_infos(hos_infos);
+        sethosCity(hos_infos[0]["loc_hosCityName"]);
+        sethosCountry(hos_infos[0]["loc_hosCountyName"]);
         //  console.log("병원정보 : ", hos_infos);
       })
       .catch(function (error) {
@@ -37,7 +41,10 @@ function MainPage() {
     console.log("경도 : ", hos_infos[0]["loc_longitude"]);
   }
 
-  function onChange(value) {
+  function onChange(values) {
+    sethosCity(values[0]);
+    sethosCountry(values[1]);
+
     //     let cityCounry = value.selectHospital;
     //     axios
     //       // .get(`${API_URL}/hosloc/`)
@@ -62,26 +69,6 @@ function MainPage() {
     };
   });
 
-  return (
-    <div className="selectFrom">
-      <Form name="selectHos" onFinish={onSubmit} className="searchBar">
-        <Form.Item name="selectHospital">
-          <Cascader
-            size="large"
-            id="searchCas"
-            options={options}
-            onChange={onChange}
-            placeholder="Please select"
-          />
-        </Form.Item>
-        <Form.Item>
-          <Button id="submit-buttion" size="large" htmlType="submit">
-            병원 선택
-          </Button>
-        </Form.Item>
-      </Form>
-     
-    </div>
-  );
+  return <SearchBar />;
 }
 export default MainPage;

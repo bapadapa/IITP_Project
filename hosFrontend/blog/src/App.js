@@ -6,12 +6,12 @@ import Footer from "./component/Footer";
 import Banner from "./component/Banner";
 import { Route, Switch } from "react-router";
 import MainPage from "./component/main";
-import Main2 from "./component/main2"
+import Main2 from "./component/main2";
 
 // import SearchBar2 from "./component/others/serchBar/SearchBar2";
 const App = () => {
   return (
-    <div className='back'>
+    <div className="back">
       <section>
         <header>
           <Banner />
@@ -30,9 +30,9 @@ const App = () => {
               </div>
             </div>
           </Route>
-          <Route exact={true} path="/1">
+          <Route exact={true} path="/info/:city/:county">
             <div>
-              <Main2 />         
+              <Main2 />
             </div>
           </Route>
         </Switch>

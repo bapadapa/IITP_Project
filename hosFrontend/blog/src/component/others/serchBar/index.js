@@ -1,7 +1,7 @@
 import axios from "axios";
 import "./index.css";
 import { API_URL, countyName, citysName } from "../../constants";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import React from "react";
 import { Cascader, Form, Button, Divider, message } from "antd";
 // import SearchBar from "../SearchBar/";
@@ -11,6 +11,8 @@ function onChange(value) {
 }
 
 function SearchBar() {
+  const [hosCity, sethosCity] = React.useState([]);
+  const [hosCountry, sethosCountry] = React.useState([]);
   const history = useHistory();
   const [hos_infos, setHos_infos] = React.useState([]);
   //   const [latitute,setLatitue]
@@ -31,7 +33,11 @@ function SearchBar() {
   if (hos_infos.length != 0) {
   }
 
-  function onChange(value) {}
+  function onChange(values) {
+    sethosCity(values[0]);
+    sethosCountry(values[1]);
+    console.log(values);
+  }
 
   let cnt = 0;
   const options = citysName.map((citysName) => {
@@ -57,9 +63,15 @@ function SearchBar() {
           />
         </Form.Item>
         <Form.Item>
-          <Button id="submit-buttion" size="large" htmlType="submit">
-            병원 선택
-          </Button>
+          <Link
+            className="location-link"
+            to={"/info/" + hosCity + "/" + hosCountry}
+            // to={"/link/" + hosCity + "/" + hosCountry}
+          >
+            <Button id="submit-buttion" size="large" htmlType="submit">
+              병원 선택
+            </Button>
+          </Link>
         </Form.Item>
       </Form>
     </div>
