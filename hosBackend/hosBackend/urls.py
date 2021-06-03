@@ -23,6 +23,8 @@ router.register('hosloc',hosloc_Views.LocInfoViewSet)
 
 
 urlpatterns = [
+
+    # 아래 값중 <str:변수명> 을 이용하여 파라미터를 전달해 줄 수 있다.
     path('admin/', admin.site.urls),
     path('',include(router.urls)),
     path('<str:city>/city/',hosloc_Views.cityHos),
