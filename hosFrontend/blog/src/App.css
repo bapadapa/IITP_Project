@@ -1,3 +1,8 @@
+/* *{
+  border: 3px solid black;
+} */
+
+
 .App {
   text-align: center;
 }
@@ -7,7 +12,9 @@
   background-color: #282c34;
   
   background-repeat:no-repeat;
-  background-size: 2100px;
+  background-size: 100% 100%;
+  background-attachment: scroll;
+
   width: 100%;
   height: 800px; 
   min-height: 100vh;
@@ -23,13 +30,13 @@
   margin: 5px;
   border: '5px solid gray',
 }
-
+/* 
 .map {
   width: 500px;
   height: 500px;
   border: 5px;
   
-}
+} */
 
 .App-link {
   color: #61dafb;
@@ -42,4 +49,23 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.App1 {
+  display: flex;
+  width: 50%;
+  height: 50%;
+  
+}
+.App2 {
+  display: flex;
+  width: 50%;
+  height: 50%;
+  flex-direction: column-reverse
+}
+.App3 {
+  display: flex;
+  width: 50%;
+  height: 50%;
+  flex-direction: column-reverse
 }
