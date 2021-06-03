@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import Map from "../Map";
+import MapContainer from "../others/maps/Map";
 import SearchBar from "../others/serchBar";
 import dream from "../../image/dream.png";
 import axios from "axios";
@@ -10,8 +10,22 @@ import { scroll } from "../others/scroll";
 const Main2 = () => {
   const { city, county } = useParams([]);
   const [hosInfo, setHosInfo] = React.useState([]);
-  //   console.log(city, county);
+  // console.log(city, county);
+
   React.useEffect(function () {
+    axios
+      // .get(`${API_URL}/hosloc/`)
+      .get(`${API_URL}/${city}/city/${county}/county/`)
+      .then(function (result) {
+        const hosInfo = result.data;
+        setHosInfo(hosInfo);
+        // console.log(hosInfo);
+      })
+      .catch(function (error) {
+        console.log("Fail to Conn API", error);
+      });
+  }, []);
+  if (hosInfo.length != 0 && hosInfo[0]["loc_hosCityName"] != city)
     axios
       // .get(`${API_URL}/hosloc/`)
       .get(`${API_URL}/${city}/city/${county}/county/`)
@@ -23,8 +37,6 @@ const Main2 = () => {
       .catch(function (error) {
         console.log("Fail to Conn API", error);
       });
-  }, []);
-
   return (
     <div className="full">
       <div className="All">
@@ -39,7 +51,7 @@ const Main2 = () => {
           </div>
           <div className="App11">
             <div className="App1">
-              <Map />
+              <MapContainer hosInfos={hosInfo} />
             </div>
           </div>
           <div className="infos">
