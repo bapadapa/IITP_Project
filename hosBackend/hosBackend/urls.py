@@ -30,5 +30,6 @@ urlpatterns = [
     path('<str:county>/county/',hosloc_Views.CounryHos),
     path('<str:city>/city/<str:county>/county/',hosloc_Views.cityCountryHos),
     path('<str:city>/city/<str:county>/county/<str:subject>/subject/', hosloc_Views.AllHos),
+    # path('<float:lat>/<float:lng>/lat/',hosloc_Views.cityCountryHos),
     # path('/<str:city>/det/',hosloc_Views.selectCity, name ='cityDet'),
 ]

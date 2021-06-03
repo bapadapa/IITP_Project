@@ -1,13 +1,12 @@
 import axios from "axios";
 import "./index.css";
-import Map from "../others/maps/Map";
+import MyMapComponent from "../others/maps/Map";
 import { API_URL, countyName, citysName } from "../constants";
-import { Route, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import React from "react";
 import { Cascader, Form, Button, Divider, message } from "antd";
-import { unstable_renderSubtreeIntoContainer } from "react-dom";
 // import SearchBar from "../SearchBar/";
-import SearchBar from "../others/serchBar";
+// import SearchBar from "../others/serchBar";
 function onChange(value) {
   console.log(value);
 }
@@ -32,9 +31,9 @@ function MainPage() {
       });
   };
   if (hos_infos.length != 0) {
-    console.log("병원정보 : ", hos_infos[0]);
-    console.log("위도 : ", hos_infos[0]["loc_Latitude"]);
-    console.log("경도 : ", hos_infos[0]["loc_longitude"]);
+    // console.log("병원정보 : ", hos_infos[0]);
+    // console.log("위도 : ", hos_infos[0]["loc_Latitude"]);
+    // console.log("경도 : ", hos_infos[0]["loc_longitude"]);
   }
 
   function onChange(value) {
@@ -81,7 +80,7 @@ function MainPage() {
         </Form.Item>
       </Form>
       <div>
-        <Map hosInfos={hos_infos} />
+        <MyMapComponent hosInfos={hos_infos} />
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 import React from "react";
 import SearchBar from "./component/SearchBar";
-import Map from "./component/Map";
 import "./App.css";
 import ss from "./image/ss.png";
 import Footer from "./component/Footer";
@@ -29,11 +28,7 @@ const App = () => {
               </div>
             </div>
           </Route>
-          <Route exact={true} path="/tmp">
-            <div>
-              <Map />
-            </div>
-          </Route>
+          <Route exact={true} path="/tmp"></Route>
         </Switch>
       </section>
       <section>
@@ -44,5 +39,4 @@ const App = () => {
     </div>
   );
 };
-
 export default App;

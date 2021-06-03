@@ -35,6 +35,13 @@ def CounryHos(request,county):
     serializer = LocInfoSerializer(queryset , many = True)
     return Response(serializer.data)
 
+
+@api_view(['get'])
+def latLngHos(request,lat,lng):
+    queryset =LocInfo.objects.filter(loc_longitude = lat,loc_Latitude = lng)
+    serializer = LocInfoSerializer(queryset , many = True)
+    return Response(serializer.data)
+
 @api_view(['get'])
 def cityCountryHos(request,city,county):
     queryset =LocInfo.objects.filter(loc_hosCityName = city,loc_hosCountyName = county)
