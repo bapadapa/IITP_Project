@@ -1,0 +1,76 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.member-introduct-box {
+  background-color: black;
+}
+.member-name {
+  height: 100;
+  background-color: blue;
+  display: flex;
+  align-content: center;
+}
+#member-list {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  // background-image: ;
+  background-color: black;
+}
+.member-block {
+  width: 100%;
+  height: 100%;
+  margin-right: 12px;
+  margin-bottom: 12px;
+  display: flex;
+
+  /* 모서리 다듬기 ( 둥글게 만들기 )  */
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgb(230, 230, 230);
+  background-color: gray;
+}
+
+.teamMember-imgBox {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 5%;
+  width: 20%;
+  height: 20%;
+  border-radius: 70%;
+  overflow: hidden;
+  float: left;
+}
+.teamMember-img {
+  width: 100%;
+  height: 100%;
+  background-color: cadetblue;
+}
+.teamMember-contents {
+  margin-left: 5%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  padding: 10px;
+  width: 50%;
+  height: 50%;
+  // margin: 10%;
+  float: right;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.teamMember-name {
+  font-size: 30pt;
+  font-weight: 500;
+}
+.teamMember-position {
+  margin-top: 10px;
+  font-size: 30pt;
+}
+.teamMember-major {
+  margin-top: 10px;
+  font-size: 30pt;
+}

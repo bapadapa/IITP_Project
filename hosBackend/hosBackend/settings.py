@@ -79,12 +79,18 @@ WSGI_APPLICATION = 'hosBackend.wsgi.application'
 
 DATABASES = {
     'default': {
+        # 'ENGINE': 'django.db.backends.oracle',
+        # 'NAME': 'XEPDB1',
+        # 'USER': 'hr',
+        # 'PASSWORD': 'hr',
+        # 'HOST': '172.16.8.75',
+        # 'PORT': '11522',
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': 'XEPDB1',
+        'NAME': 'xepdb1',
         'USER': 'hr',
         'PASSWORD': 'hr',
-        'HOST': '172.16.8.75',
-        'PORT': '11522',
+        'HOST': 'localhost',
+        'PORT': '1521',
     }
 }
 

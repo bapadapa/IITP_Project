@@ -1,9 +1,6 @@
 import React from "react";
-<<<<<<< HEAD
 import SearchBar from "./component/SearchBar";
-=======
 import Map from "./component/Map";
->>>>>>> a9430519e2a62ee2deb499bebf8f85c98498e7ca
 import "./App.css";
 import ss from "./image/ss.png";
 import Footer from "./component/Footer";
@@ -34,17 +31,15 @@ const App = () => {
               </div>
             </div>
           </Route>
-<<<<<<< HEAD
           <Route exact={true} path="/tmp"></Route>
-=======
           <Route exact={true} path="/info/:city/:county">
             <div>
               <Main2 />
             </div>
           </Route>
->>>>>>> a9430519e2a62ee2deb499bebf8f85c98498e7ca
         </Switch>
       </section>
+      
       <section>
         <footer>
           <Footer />

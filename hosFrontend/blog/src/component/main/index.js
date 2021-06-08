@@ -2,17 +2,14 @@ import axios from "axios";
 import "./index.css";
 import MyMapComponent from "../others/maps/Map";
 import { API_URL, countyName, citysName } from "../constants";
-<<<<<<< HEAD
 import { useHistory } from "react-router-dom";
 import React from "react";
 import { Cascader, Form, Button, Divider, message } from "antd";
-=======
 import { Route, useHistory, Link } from "react-router-dom";
 import React from "react";
 import { Cascader, Form, Button, Divider, message } from "antd";
 import { unstable_renderSubtreeIntoContainer } from "react-dom";
 
->>>>>>> a9430519e2a62ee2deb499bebf8f85c98498e7ca
 // import SearchBar from "../SearchBar/";
 // import SearchBar from "../others/serchBar";
 function onChange(value) {
@@ -75,7 +72,6 @@ function MainPage() {
     };
   });
 
-<<<<<<< HEAD
   return (
     <div className="selectFrom">
       <Form name="selectHos" onFinish={onSubmit} className="searchBar">
@@ -99,8 +95,6 @@ function MainPage() {
       </div>
     </div>
   );
-=======
   return <SearchBar />;
->>>>>>> a9430519e2a62ee2deb499bebf8f85c98498e7ca
 }
 export default MainPage;
