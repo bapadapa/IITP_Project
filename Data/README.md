@@ -1,5 +1,9 @@
 # 데이터 및 처리하기!
 
+## 다운로드 및 사용API
+
+- [병원 및 약국 정보](HospitalPublicData)
+
 ## 참고할 사이트들
 
 - 데이터
@@ -15,6 +19,3 @@
   - [의료기관 위치정보 시스템](http://www.hospitalmaps.or.kr/hm/_main/main.jsp)
   - [코로나맵](https://coronamap.site/)
   - [라이브 코로나맵](https://livecorona.co.kr/)
-
-- 다운받은 CSV
-  - [병원 및 약국 정보](HospitalPublicData)
