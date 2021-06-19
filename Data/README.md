@@ -19,3 +19,5 @@
   - [의료기관 위치정보 시스템](http://www.hospitalmaps.or.kr/hm/_main/main.jsp)
   - [코로나맵](https://coronamap.site/)
   - [라이브 코로나맵](https://livecorona.co.kr/)
+- 논문
+  - [sci-hub](https://www.dbpia.co.kr/Journal/articleDetail?nodeId=NODE09046598)
