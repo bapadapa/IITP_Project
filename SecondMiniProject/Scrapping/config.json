@@ -1,0 +1,6 @@
+{
+  "webPath": "https://novel.munpia.com/page/hd.novel/group/nv.regular",
+  "chromePath": "C:/Users/painc/Anaconda3/bin/chromedriver.exe",
+  "chromeDownload": "download.default_directory",
+  "genres": ["로맨스", "무협", "추리"]
+}
