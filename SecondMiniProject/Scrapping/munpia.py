@@ -37,9 +37,10 @@ chrome_option.add_experimental_option('prefs',prefs)
 driver = webdriver.Chrome(config['chromePath'],options=chrome_option)
 driver.implicitly_wait(3)
 title_link = pd.DataFrame(columns=['genre','title','link'])
-# 크롤링 시작
-driver.get(webPath)    
+
+# 크롤링 시작    
 for genre in config['genres'] :
+    driver.get(webPath)
     sleep(2)
     driver.find_element_by_class_name("trigger-genres").click()
     menus = driver.find_element_by_id("NAV-GENRES")
@@ -47,6 +48,7 @@ for genre in config['genres'] :
     sleep(1)
     # 완결작 클릭
     driver.find_element_by_class_name("pic-sect-close").click()
+SecondMiniProject/Scrapping/첫 번째 달 
     sleep(2)
     
     soup = BeautifulSoup(driver.page_source,'html.parser')
