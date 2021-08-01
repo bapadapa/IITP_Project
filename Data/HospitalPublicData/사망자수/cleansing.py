@@ -27,3 +27,9 @@ result = result[['연도','시도별','사망자수','사망원인별','성별']
 result.to_csv('./Post'+fileName,encoding='utf-8-sig',index= False)
 
 
+#%%
+import pandas as pd
+df = pd.read_csv('./postprocess/Post사망원인_성_시도별_사망자수_1983_2019.csv')
+df[df.연도 == 1983]
+
+#%%

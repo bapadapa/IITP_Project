@@ -1,5 +1,6 @@
 #%%
 # import
+from typing import ValuesView
 import pandas as pd
 import numpy as np
 
@@ -35,3 +36,14 @@ result.to_csv('./Post_시도별_병실_현황_2011_2019.csv',encoding='utf-8-sig
 
 
 # %%
+import pandas as pd
+df = pd.read_csv('./postprocess/Post_시도별_병실_현황_2011_2019.csv')
+result =df[df.병실_병상수 == '병실수']
+result.rename(columns = {'개수':'병실수'},inplace=True)
+result = result[['연도','도시','병실종류','병실수']].reset_index(drop=True)
+result['병상수'] = pd.DataFrame(df[df.병실_병상수 == '병상수']['개수']).reset_index(drop= True)
+# result.to_csv('./Post2_시도별_병실_현황_2011_2019.csv',encoding='utf-8-sig',index= False)
+result.shape
+
+#%%
+ValuesView
