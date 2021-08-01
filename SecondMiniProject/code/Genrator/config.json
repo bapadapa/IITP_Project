@@ -5,8 +5,7 @@
   "rnn_units": 1024,
   "checkpoint_dir": "../../data/checkPoints/",
   "model_Path": "../../data/models/",
-  "checkPoint_Path": "../../data/checkPoints/",
-  "Scrapping+Path": "../../Scrapping/novels/",
+  "Scrapping_Path": "../../Scrapping/novels/",
   "novel_Path": [
     "../../data/novels/romance/",
     "../../data/novels/detectiveStory/",
