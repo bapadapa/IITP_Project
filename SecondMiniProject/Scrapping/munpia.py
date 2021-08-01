@@ -19,19 +19,22 @@ import os
 
 import pandas as pd
 import json
-
+import re
 # Json 파일 읽기
 with open("config.json", "r", encoding = 'utf-8') as common:
     config = json.load(common)
 webPath = config['webPath']
 filePath = os.getcwd()+r'/novels'
+
 # 다운로드 경로
 if not os.path.isdir(filePath):
     os.mkdir(filePath)
+
 # 크롬경로 등 기본 설정
 prefs = {config['chromeDownload']: filePath}
 chrome_option = Options()
 chrome_option.add_experimental_option('prefs',prefs)
+
 # 웹 드라이버 생성
 # 위에 설정한 기본 옵션 삽입.
 driver = webdriver.Chrome(config['chromePath'],options=chrome_option)
@@ -45,10 +48,9 @@ for genre in config['genres'] :
     driver.find_element_by_class_name("trigger-genres").click()
     menus = driver.find_element_by_id("NAV-GENRES")
     menus.find_element_by_link_text(genre).click()
-    sleep(1)
+    sleep(2)
     # 완결작 클릭
     driver.find_element_by_class_name("pic-sect-close").click()
-SecondMiniProject/Scrapping/첫 번째 달 
     sleep(2)
     
     soup = BeautifulSoup(driver.page_source,'html.parser')
@@ -62,17 +64,21 @@ SecondMiniProject/Scrapping/첫 번째 달
         driver.get(title_link.link[i]) 
         novel = str()
         driver.find_element_by_class_name('first-view').click()
+        print(title_link.title[i])
         while True:    
             try:    
-                sleep(1)
-                print(driver.find_element_by_class_name('subinfo').text)
+                WebDriverWait(driver,10).until(EC.presence_of_element_located(By.CLASS_NAME,"tcontent"))                
                 novel += driver.find_element_by_class_name('tcontent').text
                 driver.find_element_by_class_name('next').click() 
             except:
                 break    
         if not os.path.isdir(filePath+'/'+title_link.genre[i]):
             os.mkdir(filePath+'/'+title_link.genre[i])
-        with open(f"{filePath}/{title_link.genre[i]}/{title_link.title[i]}.txt", "w") as file:
+        fileName = re.sub('[-=+,#/\?:^$.@*\"※~&%ㆍ!』\\‘|\(\)\[\]\<\>`\'…》]', '', title_link.title[i])
+        with open(f"{filePath}/{title_link.genre[i]}/{fileName}.txt", "w" , encoding = 'utf-8-sig') as file:
             file.write(novel)
             file.close()
 driver.close()
+# %%
+
+# %%
