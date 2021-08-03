@@ -8,9 +8,8 @@ import json
 # Json 파일 읽기
 with open("config.json", "r", encoding = 'utf-8') as common:
     config = json.load(common)
-#%%
 
-file_path = config['novel_Path'][0]+config['genres'][0]+'.txt'
+file_path = config['novel_Path'][0]+'.txt'
 text = open(file_path,'rb').read().decode()
 
 # txt 단어 단위로 중복제거 및 인덱싱
@@ -60,8 +59,6 @@ def build_model(vocab_size, embedding_dim, rnn_units, batch_size):
         tf.keras.layers.LSTM(
             rnn_units, return_sequences=True, stateful=True, recurrent_initializer='glorot_uniform'),
             #rnn_units, return_sequences=True, stateful=True, recurrent_initializer='glorot_normal'),
-            
-
         tf.keras.layers.Dense(
             vocab_size)            
     ])
@@ -100,6 +97,7 @@ model = build_model(
 model.load_weights(tf.train.latest_checkpoint(config['checkpoint_dir']+config['genres'][0]))
 
 model.build(tf.TensorShape([1, None]))
+
 #%%
 model.summary()
 #%%

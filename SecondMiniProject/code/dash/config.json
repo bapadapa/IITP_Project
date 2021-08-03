@@ -3,13 +3,10 @@
   "batch_size": 64,
   "embedding_dim": 256,
   "rnn_units": 1024,
+  "EPOCHS": 100,
   "checkpoint_dir": "../../data/checkPoints/",
   "model_Path": "../../data/models/",
   "Scrapping_Path": "../../Scrapping/novels/",
-  "novel_Path": [
-    "../../data/novels/romance/",
-    "../../data/novels/detectiveStory/",
-    "../../data/novels/martialArts/"
-  ],
-  "genres": ["romance", "martialArts", "detectiveStory"]
+  "novel_Path": "../../data/novels/",
+  "genres": ["romance", "detectiveStory", "martialArts"]
 }
