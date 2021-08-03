@@ -4,7 +4,25 @@ from tensorflow.python.keras.models import load_model
 import os
 import re
 import numpy as np
+from pytesseract import *
+from PIL import Image
+import glob
+import os
+import sys
 
+
+# image -> txt
+def ocr(file_dir , lang = 'kor'):
+    # images_URL = glob.glob("C:/mini_project_2/1레벨 초월자 001-025/*.gif")
+    images_URL = glob.glob(file_dir)
+    result = ''
+    for i in images_URL:
+        result = result + pytesseract.image_to_string(Image.open(i),lang = lang)
+    sys.stdout = open('ocr_result.txt', 'w')
+    print(result)
+    sys.stdout.close()
+    return result
+    
 # Json 파일 읽어오기
 def read_json(jsonPath = "config.json" ,mod = 'r',encoding ='utf-8'):
     with open(jsonPath, mod, encoding = encoding) as common:

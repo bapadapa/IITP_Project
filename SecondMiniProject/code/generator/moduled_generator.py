@@ -7,7 +7,7 @@ import tensorflow as tf
 #파일 가져오기
 # Json 파일 및 소설 가져오기 읽기
 config = generate_mod.read_json()
-text = generate_mod.read_all_text(config,config['genres'][1])
+text = generate_mod.read_all_text(config,config['genres'][0])
 
 # 인덱싱 사전 생성 및 모든 텍스트 맵핑시킴
 vocab, char2idx, idx2char , text_as_int  = generate_mod.indexing(text)
