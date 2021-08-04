@@ -3,7 +3,7 @@
   "batch_size": 64,
   "embedding_dim": 256,
   "rnn_units": 1024,
-  "EPOCHS": 2,
+  "EPOCHS": 10,
   "checkpoint_dir": "../../data/checkPoints/",
   "model_Path": "../../data/models/",
   "Scrapping_Path": "../../Scrapping/novels/",

@@ -1,5 +1,6 @@
 import json
 import tensorflow as tf
+from tensorflow.python.keras import activations
 from tensorflow.python.keras.models import load_model
 import os
 import re
@@ -79,8 +80,6 @@ def clean_text(text):
     result = re.sub('\.+','.',result)    
     result = re.sub('\?+','?',result)  
     result = re.sub('(\r\n)+', '\r\n', result)
-    
-
     # result = re.sub('\n ', '', result)
     # result = re.sub('\n', '\n ', result)
     return result
@@ -111,9 +110,11 @@ def build_model(vocab_size, embedding_dim, rnn_units, batch_size):
         tf.keras.layers.Embedding(
             vocab_size, embedding_dim, batch_input_shape = [batch_size, None]),
         tf.keras.layers.LSTM(
-            rnn_units, return_sequences=True, stateful=True, recurrent_initializer='glorot_uniform'),
+            rnn_units, return_sequences=True, stateful=True, recurrent_initializer='glorot_uniform' ),
             #rnn_units, return_sequences=True, stateful=True, recurrent_initializer='glorot_normal'),
         tf.keras.layers.Dense(
+            rnn_units , activation='relu'),
+        tf.keras.layers.Dense(            
             vocab_size)            
     ])
     
@@ -167,6 +168,7 @@ def model_learning(config ,vocab ,dataset ,genre_Index):
     # 경로에 디렉토리 없을시 생성 후 저장
     check_path(config['model_Path'])
     model_path = config['model_Path'] + config['genres'][genre_Index]
+    
     model.save(f'{model_path}.h5')
 
     return model
@@ -188,7 +190,7 @@ def generate_text( model_index, start_string,num_generate = 1000,temperature = 0
     # 평가 단계 (학습된 모델을 사용하여 텍스트 생성)
   
     # 시작 문자열을 숫자로 변환(벡터화)
-    input_eval = [char2idx[s] for s in start_string]
+    input_eval = [char2idx[s] for s in start_string]  
     input_eval = tf.expand_dims(input_eval, 0)
   
     # 결과를 저장할 빈 문자열
@@ -199,6 +201,7 @@ def generate_text( model_index, start_string,num_generate = 1000,temperature = 0
         predictions = model(input_eval)
         # 배치 차원 제거
         predictions = tf.squeeze(predictions, 0)
+        
         # 범주형 분포를 사용하여 모델에서 리턴한 단어 예측      
         # 온도가 낮으면 더 예측 가능한 텍스트가 됩니다.
         # 온도가 높으면 더 의외의 텍스트가 됩니다.
