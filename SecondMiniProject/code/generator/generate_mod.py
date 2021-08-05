@@ -10,7 +10,7 @@ from PIL import Image
 import glob
 import os
 import sys
-
+from functools import partial
 
 # image -> txt
 def ocr(file_dir , lang = 'kor'):
@@ -113,7 +113,9 @@ def build_model(vocab_size, embedding_dim, rnn_units, batch_size):
             rnn_units, return_sequences=True, stateful=True, recurrent_initializer='glorot_uniform' ),
             #rnn_units, return_sequences=True, stateful=True, recurrent_initializer='glorot_normal'),
         tf.keras.layers.Dense(
-            rnn_units , activation='relu'),
+            rnn_units , activation=partial(tf.nn.leaky_relu, alpha=0.01)),
+        # tf.keras.layers.Dense(
+        #     rnn_units , activation='relu'),
         tf.keras.layers.Dense(            
             vocab_size)            
     ])
