@@ -185,9 +185,26 @@ def generate_text( model_index, start_string,num_generate = 1000,temperature = 0
 
     # 인덱싱 사전 생성 및 모든 텍스트 맵핑시킴
     vocab, char2idx, idx2char , text_as_int  = indexing(text)
+    # model_Path = config['model_Path'] + config['genres'][model_index]
+    # model = load_model(f'{model_Path}.h5')
+    
+    # 모델을 불러오는 코드
+    if model_index == 2 :
+        model_Path = config['model_Path'] + config['genres'][model_index]
+        model = load_model(f'{model_Path}.h5')
+    # 가중치만 저장 한 것을 불러오는 코드
+    else :    
+        model = build_model(
+            vocab_size = len(vocab),
+            embedding_dim = config['embedding_dim'],
+            rnn_units = config['rnn_units'],
+            batch_size = 1
+        )
+        model_Path = config['model_Path'] + config['genres'][model_index] + '.h5'
+        model.load_weights(model_Path)
+    
+        model.build(tf.TensorShape([1, None]))
 
-    model_Path = config['model_Path'] + config['genres'][model_index]
-    model = load_model(f'{model_Path}.h5')
 
     # 평가 단계 (학습된 모델을 사용하여 텍스트 생성)
   

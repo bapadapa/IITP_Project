@@ -41,9 +41,25 @@ import generate_mod
 import tensorflow as tf
 
 text = generate_mod.generate_text(
-    model_index = 2, 
+    model_index = 1, 
     start_string = '사람 ',
     num_generate = 1000,
     temperature = 0.6
     )
 text
+
+#%%
+
+
+#%%
+
+model.load_weights(tf.train.latest_checkpoint(config['checkpoint_dir']+config['genres'][genre_Index]))
+
+model.build(tf.TensorShape([1, None]))
+
+    # 경로에 디렉토리 없을시 생성 후 저장
+check_path(config['model_Path'])
+model_path = config['model_Path'] + config['genres'][genre_Index]
+    
+ 
+
