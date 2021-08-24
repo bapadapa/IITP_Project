@@ -22,8 +22,8 @@
 
 ## 코드
 
-1. [훈련함수](code\generator)
-1. [시각화](code\dash)
+1. [훈련함수](./code/generator)
+1. [시각화](./code/dash)
 
 ## 사용 데이터
 
