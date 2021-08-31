@@ -155,8 +155,8 @@ ind=[]
 for i in range(len(y_train)):
     cnt=0
     for j in y_train[i]:
-        if j!=0:
-            cnt=cnt+1
+        if j != 0 :
+            cnt += 1 
     if(cnt==2):
         ind.append(i)
 
@@ -331,5 +331,5 @@ for i in range(0,100):
     print("Review:",seq2text(x_train[i],r_source_word_idx))
     print("Original summary:",seq2summary(y_train[i],target_word_idx,r_target_word_idx))
     print("Predicted summary:",dec_sequence(x_train[i].reshape(1,max_text_len),target_word_idx,r_target_word_idx,max_summary_len))
-    print("\n")                            
+    print("\n")
 #%%
