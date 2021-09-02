@@ -21,30 +21,25 @@ from sklearn.model_selection import train_test_split
 import tensorflow as tf
 import json
 from bs4 import BeautifulSoup
-
-# %%
+#%%
 path  = '../../data/'
 danger = pd.read_csv(path+'newsData/google_news_data_danger_words.csv')
 danger =danger[danger.columns[1:]]
 safe = pd.read_csv(path+'newsData/google_news_data_safe_words.csv')
 safe =safe[safe.columns[1:]]
-# %%
-print('danger : ',danger.search_word.unique(),'\n',len(danger.search_word.unique()))
-print('safe : ' ,safe.search_word.unique() ,'\n', len(safe.search_word.unique()))
-# %%
+# 안전 과 위험 데이터 량차이때문에 동일하게 변경
+danger = danger[:len(safe)]  
 # 위험, 안전 키워드 통일화
 new_danger = danger[danger.columns[:-1]]
 new_danger.search_word = 0
 new_safe = safe[safe.columns[:-1]]
 new_safe.search_word = 1
-
-#%%
+ 
 # 칼럼명 변경
 data = new_danger.append(new_safe)
 data.columns = ['Text','safety'] 
 data.safety = np_utils.to_categorical(data.safety)
-pre_clean = len(data)
-#%%
+pre_clean = len(data) 
 # 데이터 정제
 # 중복제거
 data.drop_duplicates(subset='Text',inplace= True)
@@ -83,20 +78,17 @@ data['Text'] = cleaned_text
 print(len(data))
 post_clean = len(data)
 print(f'{pre_clean-post_clean}개의 단어가 제거 되었습니다.')
-
-# %%
+ 
 x = []
 for sentence in data['Text']:    
     x.append([word[0] for word in nltk.pos_tag(nltk.word_tokenize(sentence))])
-x
-#%%
+x 
 # Tokenizing 해주기
 tokenizer = Tokenizer()
 # 문자 데이터 -> 리스트 형태로 변경
 tokenizer.fit_on_texts(x)
 # tokenizer을 key : value, 즉 dict로 만들어줌
-print(tokenizer.word_index)
-#%%
+print(tokenizer.word_index) 
 # 빈도수가 너무 적은 단어는 제거해주기
 threshold = 3
 words_cnt = len(tokenizer.word_index)
@@ -114,10 +106,10 @@ print('전체 단어수 : ', words_cnt)
 print(f"빈도수가 {threshold-1} 이 하인 희귀 단어 수 {rare_cnt}")
 print(f'희귀 단어 비율 : {(rare_cnt/words_cnt) * 100}')
 print(f"희귀 단어 등장 빈도 비율 : {(rare_freq/words_freq) * 100}")
-#%%
+
 vocab_size = words_cnt - rare_cnt +2
 print(vocab_size)
-#%%
+
 # oov == out of vocabulary
 tokenizer = Tokenizer(vocab_size , oov_token = 'OOV')
 tokenizer.fit_on_texts(x)
@@ -125,25 +117,25 @@ tokenizer.fit_on_texts(x)
 x = tokenizer.texts_to_sequences(x)
 y =np.array(data['safety'])
 
-#%%
+
 # 전처리하면서 길이가 0이된 문장 삭제
 drop_ = [idx for idx, sentence in enumerate(x) if len(sentence) < 1]
 x = np.delete(x , drop_ ,axis=0)
 y = np.delete(y , drop_ ,axis=0)
-#%%
+
 #padding 길이를 맞추고, 입력을 동일한 길이로 맞춰줌
 print('최대 길이 :  ', max(len(x) for l in x))
 print('평균 길이 :  ', sum(map(len, x))/len(x))
-#%%
+
 # 플롯팅하여 최대길이 지정해주기
 plt.hist([len(s) for s in  x],bins = 50)
 plt.xlabel('length')
 plt.ylabel('number')
 plt.show()
-#%%
+
 max_len = 15
-x= pad_sequences(x,maxlen=max_len)
-#%%
+x= pad_sequences(x,maxlen=max_len) 
+
 X_train, X_test, Y_train,Y_test = train_test_split(x,y,test_size=.2)
 # %%
 # Sequential로 생성
@@ -196,7 +188,6 @@ model.compile(
 model.summary()
 #%%
 es = EarlyStopping(monitor='val_loss', mode='min', verbose=1,patience=50)
-# model = keras.models.load_model(path+'models/Concatenate_LSTM3_dropout5_RMSPropmodel.h5')
 
 with tf.device('/device:GPU:0'):
     history = model.fit(
@@ -207,7 +198,7 @@ with tf.device('/device:GPU:0'):
         batch_size= 512,
         validation_split= .3
     )
-model.save(path+'models/Concatenate_LSTM3_dropout5_RMSProp_model.h5')
+model.save(path+'models/Concatenate_LSTM3_dropout5_RMSProp_model_new.h5')
 #%%
 path
 #%%
@@ -241,5 +232,45 @@ results
 class_names = [
     'danger', 'Safe'
     ]
-print(class_names[np.argmax(model.predict(X_test[200:201]))])
-print(class_names[np.argmax(Y_test[200:201])])
+
+#%%
+X_test[[0]]
+#%%
+Y_test[0:1]
+#%%
+print(class_names[np.argmax(model.predict(X_test[[4]]))])
+
+#%%
+
+model = keras.models.load_model('../../data/models/Concatenate_LSTM3_dropout5_RMSProp_337_model_new.h5')
+
+
+#%%
+
+np.where(model.predict(X_test) > 0.5 ,1 , 0)
+#%%
+len(X_test)
+#%%
+X_test.shape
+#%%
+
+result = model.predict(x)
+#%%
+print(x.shape)
+print(y.shape)
+#%%
+print(len(np.where(y == 1)[0]))
+print(len(np.where(y == 0)[0]))
+
+#%%
+print(len(np.where(result > 0.5)[0]))
+print(len(np.where(result < 0.5)[0]))
+#%%
+print(Y_test[np.where(result > 0.5)[0][4]],result[np.where(result > 0.5)[0][4]])
+print(Y_test[np.where(result < 0.5)[0][4]],result[np.where(result < 0.5)[0][4]])
+#%%
+
+
+
+#%%
+model.predict(X_test[0].reshape(1,-1))
