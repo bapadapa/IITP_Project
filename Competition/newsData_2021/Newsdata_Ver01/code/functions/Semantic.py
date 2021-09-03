@@ -1,3 +1,12 @@
+
+"""
+위험도 분석
+
+사용 버전
+1. Python : 3.8.0
+2. tensor : 2.3.0
+3. keras  : 2.4.0
+"""
 #%%
 import re
 import urllib.request
