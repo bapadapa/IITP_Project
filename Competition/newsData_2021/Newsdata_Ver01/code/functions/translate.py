@@ -7,6 +7,7 @@ import googletrans
 
 # %%
 translate = googletrans.Translator()
+# 무작위 기사를 가져와 테스트
 str1 = '''The Taliban said Tuesday that they were "not allowing the evacuation of Afghans anymore" and warned that the US must stick to next week's deadline to pull out, as a frantic Western evacuation operation at Kabul airport picked up pace.
 The announcement came as US President Joe Biden made clear he aims to stick with his August 31 deadline to withdraw troops from Afghanistan -- as long as the Taliban does not disrupt ongoing evacuation operations or airport access. Top American allies have already called for an extension in order to fly more people out.
 Taliban spokesman Zabiullah Mujahid told a press conference Tuesday that while foreign nationals could continue traveling to the airport, the huge crowds of Afghans that have gathered there in recent days should return home and would not face reprisals from the country's new rulers.
