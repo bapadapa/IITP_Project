@@ -343,4 +343,4 @@
 
 ## 모델운영\_방안
 
-[Dash](../code/Dash.ipynb)
+[Dash](code/Dash.ipynb)
