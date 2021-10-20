@@ -44,7 +44,7 @@
 
 ### 과제프로세스
 
-![프로세스](./Formarkdown/process.png)
+![프로세스](https://i.ibb.co/Yt5yJdw/process.png)
 
 ## 데이터
 
